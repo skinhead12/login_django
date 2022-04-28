@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 def home(request):
     return render (request, 'authentication/index.html')
@@ -50,5 +50,7 @@ def signin(request):
     return render (request, 'authentication/signin.html')
 
 def signout(request):
-    pass
+    logout(request)
+    messages.success(request, "Logged Out succesfully!")
+    return redirect('home')
 
